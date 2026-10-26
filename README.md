@@ -1,10 +1,10 @@
-# Meteorite for Redmine
+# Rubylode Meteorite for Redmine
 
 A space print: near black, hairlines, rings and small mono labels.
 
 A theme for Redmine 7 and up. It is CSS plus one small script (`javascripts/theme.js`), with no plugin and no change to Redmine itself. The script only reads the page: it adds initials next to assignees, a colour hook on status group headers and a row of view tabs. Without the script the theme still works, with plainer lists. Meteorite is a dark theme first. With a light system setting it switches to a white print, black lines on white paper (see [Dark mode](#dark-mode)). The screenshots marked light are the white print.
 
-![A walk through Meteorite: the issue list, an issue, the wiki, the to-do page and the new-issue form](docs/demo/walkthrough-light.gif)
+![A walk through Rubylode Meteorite: the issue list, an issue, the wiki, the to-do page and the new-issue form](docs/demo/walkthrough-light.gif)
 
 | | |
 |---|---|
@@ -14,7 +14,7 @@ A theme for Redmine 7 and up. It is CSS plus one small script (`javascripts/them
 
 Dark mode:
 
-![A walk through Meteorite in dark mode](docs/demo/walkthrough-dark.gif)
+![A walk through Rubylode Meteorite in dark mode](docs/demo/walkthrough-dark.gif)
 
 | | |
 |---|---|
