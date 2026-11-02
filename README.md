@@ -1,8 +1,10 @@
 # Rubylode Meteorite for Redmine
 
-A space print: near black, hairlines, rings and small mono labels.
+A dark theme for Redmine 7 and up: near black, hairlines, rings and small monospaced labels.
 
-A theme for Redmine 7 and up. It is CSS plus one small script (`javascripts/theme.js`), with no plugin and no change to Redmine itself. The script only reads the page: it adds initials next to assignees, a colour hook on status group headers and a row of view tabs. Without the script the theme still works, with plainer lists. Meteorite is a dark theme first. With a light system setting it switches to a white print, black lines on white paper (see [Dark mode](#dark-mode)). The screenshots marked light are the white print.
+Redmine 7 takes its colours from variables, so a theme can restyle most of it by remapping them. Meteorite is CSS plus one script (`javascripts/theme.js`, under 70 lines), with no plugin and no change to Redmine itself. The script only reads the page. It adds initials next to assignees, a colour hook on status group headers and a row of view tabs. Without it the theme still works, with plainer lists.
+
+Meteorite is dark first. With a light system setting it switches to a white print, black lines on white paper (see [Dark and light](#dark-and-light)). The screenshots marked light show the white print.
 
 ![A walk through Rubylode Meteorite: the issue list, an issue, the wiki, the to-do page and the new-issue form](docs/demo/walkthrough-light.gif)
 
@@ -20,17 +22,6 @@ Dark mode:
 |---|---|
 | ![The issue list in dark mode](docs/screenshots/issues-dark.png) | ![An issue in dark mode](docs/screenshots/issue-dark.png) |
 
-## Contents
-
-- [Install](#install)
-- [What is covered](#what-is-covered)
-- [Dark mode](#dark-mode)
-- [Compatibility](#compatibility)
-- [Development](#development)
-- [Checks and releases](#checks-and-releases)
-- [License](#license)
-- [Disclaimer](#disclaimer)
-
 ## Install
 
 1. Download the zip attached to the latest release (the Releases page of this repository) and unzip it inside the `themes` folder of your Redmine, so that `themes/meteorite/stylesheets/application.css` exists. Or copy the `meteorite` folder from the source tree.
@@ -41,13 +32,11 @@ To go back, choose another theme on the same page. Nothing is written to the dat
 
 ## What is covered
 
-The header and menus, the sidebar, the issue list, the issue page with its history, the new and edit forms, buttons, flash
-messages, tables, tabs, the context menu and the login page, in light and dark. Other pages (Gantt, calendar, wiki, administration)
-take their colours from the same variables and are fixed up as problems turn up.
+The header and menus, the sidebar, the issue list, the issue page with its history, the new and edit forms, buttons, flash messages, tables, tabs, the context menu and the login page, in light and dark. Gantt, calendar, wiki and administration take their colours from the same variables. I fix them as problems turn up.
 
-## Dark mode
+## Dark and light
 
-Meteorite is black by default. With a light system setting it becomes a white print, with the same drawing in black lines. If you would rather the theme stayed black, delete the `@media (prefers-color-scheme: light)` block at the end of `meteorite/stylesheets/application.css`; every rule for the white print is in that one block.
+Meteorite is black by default. With a light system setting it becomes a white print, with the same drawing in black lines. To keep it black, delete the `@media (prefers-color-scheme: light)` block at the end of `meteorite/stylesheets/application.css`. Every rule for the white print is in that block.
 
 ## Compatibility
 
@@ -66,25 +55,23 @@ npm run record          # docs/demo, a GIF of a walk through the pages
 ruby bin/demo reset     # wipe the demo
 ```
 
-If a copy of the Rubylode to-do plugin sits next to this repository (`../redmine-rubylode-todo`, or set `TODO_PLUGIN_PATH`), the demo mounts it and
-the check, screenshots and recording include its page. Without it they skip that page.
+If the Rubylode to-do plugin is checked out next to this repository (`../redmine-rubylode-todo`, or set `TODO_PLUGIN_PATH`), the demo mounts it and the check, screenshots and recording include its page. Without it they skip that page.
 
-The check fails on console errors, failed requests, sideways scrolling and text below WCAG AA contrast. `REDMINE_TAG=7.0 ruby bin/demo up`
-runs it against another Redmine version. After you change the stylesheet, run `ruby bin/demo restart` and reload: Redmine caches theme
-files until it restarts.
+The check fails on console errors, failed requests, sideways scrolling and text below WCAG AA contrast. `REDMINE_TAG=7.0 ruby bin/demo up` starts the demo on the 7.0 line instead of 7.0.2. Redmine caches theme files until it restarts, so after you change the stylesheet run `ruby bin/demo restart` and reload.
+
+Pull Requests are welcome! Run `npm run check` first.
 
 ## Checks and releases
 
-Every push starts a real Redmine from its Docker image (7.0.2 and the 7.0 line), loads every page of the theme in light and dark at desktop and phone width, and fails on console errors, failed requests, sideways scrolling and low text contrast. On GitHub that is `.github/workflows/check.yml`, on GitHub's own runners, and it also runs on pull requests. On a self-hosted Gitea it is `.gitea/workflows/check.yml`, which runs only on pushes to `main`, because that runner works on the host with Docker access and must only run code that is already merged.
+Every push starts a real Redmine from its Docker image (7.0.2 and the 7.0 line), loads every page of the theme in light and dark at desktop and phone width, and fails on the problems listed above. `.github/workflows/check.yml` does this on GitHub's runners, for pushes and pull requests. `.gitea/workflows/check.yml` is the same for a self-hosted Gitea. It runs on pushes to `main` only, because that runner works on the host with Docker access and should only run merged code.
 
-A tag such as `v1.0.0` runs the same check, builds `<name>-<version>.zip` holding the theme folder, and attaches it to a release with the matching section of `CHANGELOG.md` as its notes (`release.yml` in the same folders). The tag needs a section for that version in the changelog.
+A tag such as `v1.0.0` runs the check, builds `<name>-<version>.zip` holding the theme folder and attaches it to a release, with the matching section of `CHANGELOG.md` as the notes (`release.yml` in the same folders). The tag needs a section for that version in the changelog.
 
 ## License
 
-GPL version 2 or later, the same as Redmine. See `LICENSE`. Copyright (C) 2026  Nick Gorbikoff.
+GPL version 2 or later, the same as Redmine. See [LICENSE](LICENSE).
 
-## Disclaimer
+Copyright (C) 2026  Nick Gorbikoff
 
-Use at your own risk. This software is provided as is, without warranty of any kind, express or implied. The author is not
-liable for any damage, data loss or downtime that comes from using it. Try it on a copy of your tracker before you use it on the
-real one.
+No warranty, as the GPL says. Try it on a copy of your tracker before the real one.
+
