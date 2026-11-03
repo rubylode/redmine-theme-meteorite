@@ -1,46 +1,188 @@
 # Rubylode Meteorite for Redmine
 
-A dark theme for Redmine 7 and up: near black, hairlines, rings and small monospaced labels.
+A dark theme for Redmine 7 and up, drawn like an instrument panel: near black, hairlines, rings and ticks behind the page, square corners, a thin frame and wide-spaced capitals in the titles.
 
-Redmine 7 takes its colours from variables, so a theme can restyle most of it by remapping them. Meteorite is CSS plus one script (`javascripts/theme.js`, under 70 lines), with no plugin and no change to Redmine itself. The script only reads the page. It adds initials next to assignees, a colour hook on status group headers and a row of view tabs. Without it the theme still works, with plainer lists.
+It is plain CSS plus one small script (`javascripts/theme.js`, about 150 lines), with no plugin, no build step and no change to
+Redmine itself. The script only reads the page. It puts a status dot beside the group name in an issue list grouped by status,
+gives the top bar a hairline shadow once the page scrolls, and adds two things of Meteorite's own: a ring with the initials in
+place of an assignee's name in lists, and a row of tabs for Issues, Gantt, Calendar and Activity above the issue list. Without the
+script the theme still works, with plain names and the project menu alone. It is built on the shared Rubylode theme base, so it
+covers the same pages as the other Rubylode themes and styles the Rubylode plugins.
 
-Meteorite is dark first. With a light system setting it switches to a white print, black lines on white paper (see [Dark and light](#dark-and-light)). The screenshots marked light show the white print.
+Meteorite is dark first. With a light system setting it becomes a white print, the same drawing in black lines on warm white
+paper (see [Dark and light](#dark-and-light)). The screenshots marked light show the white print.
 
-![A walk through Rubylode Meteorite: the issue list, an issue, the wiki, the to-do page and the new-issue form](docs/demo/walkthrough-light.gif)
+![A walk through Rubylode Meteorite in its white print: the project, the issue list, an issue, the wiki, the to-do page and the new issue form](docs/demo/walkthrough-light.gif)
 
 | | |
 |---|---|
 | ![The issue list](docs/screenshots/issues-light.png) | ![An issue](docs/screenshots/issue-light.png) |
-| ![The wiki](docs/screenshots/wiki-light.png) | ![The to-do page](docs/screenshots/todo-light.png) |
-| ![The project list](docs/screenshots/projects-light.png) | ![The new issue form](docs/screenshots/new-issue-light.png) |
+| ![The new issue form](docs/screenshots/new-issue-light.png) | ![The project overview, with the Rubylode Projects plugin](docs/screenshots/project-light.png) |
+| ![The projects list, with the Rubylode Projects plugin](docs/screenshots/projects-light.png) | ![My page, with the Rubylode Home plugin](docs/screenshots/my-page-light.png) |
+| ![The welcome page, with the Rubylode Home plugin](docs/screenshots/home-light.png) | ![A status block, from the Rubylode Uptime Kuma plugin](docs/screenshots/service-status-light.png) |
+| ![The Stats page, with the Rubylode Stats plugin](docs/screenshots/stats-light.png) | ![The to-do page, with the Rubylode To-do plugin](docs/screenshots/todo-light.png) |
 
-Dark mode:
+The dark look, which is the default:
 
-![A walk through Rubylode Meteorite in dark mode](docs/demo/walkthrough-dark.gif)
+![A walk through Rubylode Meteorite in dark](docs/demo/walkthrough-dark.gif)
 
 | | |
 |---|---|
-| ![The issue list in dark mode](docs/screenshots/issues-dark.png) | ![An issue in dark mode](docs/screenshots/issue-dark.png) |
+| ![The issue list in dark](docs/screenshots/issues-dark.png) | ![An issue in dark](docs/screenshots/issue-dark.png) |
+| ![The new issue form in dark](docs/screenshots/new-issue-dark.png) | ![The project overview in dark](docs/screenshots/project-dark.png) |
+| ![The projects list in dark](docs/screenshots/projects-dark.png) | ![My page in dark](docs/screenshots/my-page-dark.png) |
+| ![The welcome page in dark](docs/screenshots/home-dark.png) | ![A status block in dark](docs/screenshots/service-status-dark.png) |
+| ![The Stats page in dark](docs/screenshots/stats-dark.png) | ![The to-do page in dark](docs/screenshots/todo-dark.png) |
+
+The screenshots come from the demo Redmine in this repository; the people, projects and issues in it are made up.
+
+## Contents
+
+- [What it looks like](#what-it-looks-like)
+- [Install](#install)
+- [What is covered](#what-is-covered)
+- [Rubylode plugins](#rubylode-plugins)
+- [Customising](#customising)
+- [Fonts](#fonts)
+- [Dark and light](#dark-and-light)
+- [Accessibility](#accessibility)
+- [Compatibility](#compatibility)
+- [Development](#development)
+- [Checks and releases](#checks-and-releases)
+- [License](#license)
+
+## What it looks like
+
+- Near black with a faint grid and a glow at the top left. An instrument is drawn behind the page (rings, ticks, a crosshair,
+  starbursts), and a thin frame with a dot at each corner runs round the window. The accent is a pale blue.
+- Corners are square everywhere. Panels are told apart by hairlines, and rows of lists by dashed lines.
+- A full-height sidebar, 232px wide, on the left. It holds the project name in wide-spaced capitals behind a small ring and the
+  project menu, with the selected item lit by a pale gradient and a bar at its edge. On the administration pages it holds the
+  administration menu. A thin bar across the top holds the global links, the New issue button, the search and project
+  switcher, and your avatar.
+- Titles are capitals in Noto Sans Mono with wide letter-spacing. Buttons and tabs are capitals too.
+- The issue list marks status with an orbit (a ring with a point, glowing for In Progress) and priority with a row of five bars lit
+  up to the level. Trackers get a small square, and group names in a grouped list sit in a box.
+- Assignees show as a ring with their initials, with the name in the tooltip. Above the issue list, the Gantt chart, the
+  calendar and the activity page, a row of tabs moves between Issues, Gantt, Calendar and Activity.
+- On the issue page, status and priority are chips, and the card is see-through with an edge in the status colour.
 
 ## Install
 
-1. Download the zip attached to the latest release (the Releases page of this repository) and unzip it inside the `themes` folder of your Redmine, so that `themes/meteorite/stylesheets/application.css` exists. Or copy the `meteorite` folder from the source tree.
+1. Download the zip attached to the latest release (the Releases page of this repository) and unzip it inside the `themes` folder of your Redmine, so that `themes/meteorite/stylesheets/application.css` exists. Or clone this repository and copy (or link) its `meteorite` folder into `themes/`.
 2. Restart Redmine.
 3. In Administration, Settings, Display, choose **Meteorite** as the theme and save.
 
 To go back, choose another theme on the same page. Nothing is written to the database apart from that setting.
 
+The theme folder holds the stylesheets, `javascripts/theme.js`, the fonts, the mark (`images/meteorite-mark.svg`) and the drawing
+behind the page (`images/instrument.svg`).
+
 ## What is covered
 
-The header and menus, the sidebar, the issue list, the issue page with its history, the new and edit forms, buttons, flash messages, tables, tabs, the context menu and the login page, in light and dark. Gantt, calendar, wiki and administration take their colours from the same variables. I fix them as problems turn up.
+The page check loads these pages, in light and dark, at desktop and phone width: sign in, the home page, the project
+overview (Redmine's own and the Rubylode Projects plugin's), the projects list, the issue list (plain and grouped), activity, the
+roadmap, an issue, an issue with subtasks, a child issue, the edit and new issue forms, the to-do page, the Stats page, the pages
+of the four status plugins, My page (Redmine's own and the Rubylode Home plugin's), a wiki page and its editor, spent time, Gantt,
+the calendar, project settings and administration.
+Flash messages, tabs, the right-click menu, dropdowns, pagination, the text editor and the phone slide-out menu are styled as well.
+
+<!-- rubylode-plugins:start -->
+## Rubylode plugins
+
+Rubylode Meteorite styles the Rubylode plugins' blocks natively. Each plugin draws with its own CSS custom properties, and one section of the
+theme, `meteorite/stylesheets/plugins.css`, points them at Rubylode Meteorite's tokens, so the blocks follow the theme in light and dark:
+
+- [Rubylode Projects](https://github.com/rubylode/redmine-rubylode-projects) (`--rubylode-projects-*`): the overview cards and the projects list.
+- [Rubylode Home](https://github.com/rubylode/redmine-rubylode-home) (`--rubylode-home-*`): My page and the welcome page.
+- [Rubylode To-do](https://github.com/rubylode/redmine-rubylode-todo) (`--todo-*`): the to-do page.
+- [Rubylode Uptime Kuma](https://github.com/rubylode/redmine-rubylode-uptime-kuma) (`--rubylode-uptime-kuma-*`),
+  [Rubylode GlitchTip](https://github.com/rubylode/redmine-rubylode-glitchtip) (`--rubylode-glitchtip-*`),
+  [Rubylode Windmill](https://github.com/rubylode/redmine-rubylode-windmill) (`--rubylode-windmill-*`) and
+  [Rubylode Beszel](https://github.com/rubylode/redmine-rubylode-beszel) (`--rubylode-beszel-*`): the status blocks.
+- [Rubylode Stats](https://github.com/rubylode/redmine-rubylode-stats) (`--stats-tooltip-*`): the chart tooltip.
+- [Rubylode New issue button](https://github.com/rubylode/redmine-rubylode-new-issue-button): a rounded primary button beside the search.
+  Plugins load their stylesheets after the theme's, so these rules start with `body #header` to win whatever the order.
+
+None of them is needed. Without a plugin its rules match nothing.
+<!-- rubylode-plugins:end -->
+
+## Customising
+
+Every colour, corner, shadow, font and a few sizes are custom properties in `meteorite/stylesheets/tokens.css`, which holds the
+white print values and then the dark values that apply by default. Change them there, or override them from a stylesheet of your
+own. The names start with `--theme-` and are the same in every Rubylode theme. The main ones:
+
+| Token | What it is |
+|---|---|
+| `--theme-page`, `--theme-surface`, `--theme-surface-sunken`, `--theme-surface-hover` | the page, the panels, sunken panels and stripes, hovered rows |
+| `--theme-line`, `--theme-line-soft`, `--theme-line-strong` | panel borders and row lines, column lines, field borders |
+| `--theme-ink`, `--theme-ink-soft`, `--theme-ink-muted` | text, secondary text, labels and notes |
+| `--theme-accent-0` to `--theme-accent-9` | the blue ramp; Redmine's blue ramp points into it. `--theme-primary` is the pale blue of the main button in dark |
+| `--theme-status-new`, `-in-progress`, `-resolved`, `-feedback`, `-closed`, `-rejected` | status colours, by Redmine's default status ids 1 to 6 |
+| `--theme-success`, `--theme-warning`, `--theme-danger`, `--theme-danger-strong` | meaning colours (priority High, Urgent, Immediate) |
+| `--theme-radius-small`, `--theme-radius`, `--theme-radius-panel`, `--theme-radius-pill` | corners of fields, cards, panels and chips; all 0 here |
+| `--theme-border-width`, `--theme-border-style`, `--theme-density` | panel borders, and the height of table rows and list items |
+| `--theme-font-size` | the size of running text (16px); every other text size follows it |
+| `--theme-font`, `--theme-font-monospace`, `--theme-title-font`, `--theme-title-weight` | the text, code and heading fonts |
+
+Meteorite adds a few of its own, set beside the others: `--theme-instrument-image`, `--theme-instrument-filter` and
+`--theme-instrument-opacity` (the drawing behind the page and how strong it is), `--theme-grid-line`, `--theme-glow`,
+`--theme-frame-line`, `--theme-status-ring` and `--theme-row-line`. Set `--theme-instrument-image: none` for a plain page.
+The rest (messages, avatars, diffs, the Gantt chart, the header heights, the icons drawn in the stylesheet) are listed with a
+comment each in `tokens.css`. If you used the old `--meteorite-*` names, the rename table is in the changelog.
+
+Meteorite's own touches that tokens cannot express (the page drawing and frame, the capitals, the orbits and bars, the
+initials and the view tabs) are in `meteorite/stylesheets/flourishes.css`, loaded last. The sidebar is
+`meteorite/stylesheets/sidebar-layout.css`, set by the `--theme-sidebar-*` tokens (width, ground, tile, hover and selected item).
+
+### Widths
+
+The sidebar needs room, so it falls back as the window narrows:
+
+- 1100px and wider: the sidebar and the thin top bar described above.
+- From 900px to 1099px: the base's two rows. The first row holds the mark, the global links, the New issue button, the search
+  and the person menu. The second holds the project name and its tabs, which scroll behind two buttons when they do not fit.
+- Below 900px: Redmine's own phone layout, with the project menu behind the menu button and the New issue button in the page.
+- The sign-in page keeps the two rows at every width.
+
+The frame, the initials and the tabs stay at every width.
+
+Status and priority colours are matched by Redmine's default ids (statuses 1 New to 6 Rejected, priorities 1 Low to 5
+Immediate). If yours differ, change the ids in the issue list sections of `meteorite/stylesheets/structure.css` and in
+`flourishes.css`.
+
+## Fonts
+
+Meteorite ships its own fonts, so text looks the same on every system and nothing is loaded from another site: Noto Sans for
+text and Noto Sans Mono for code, as woff2 files in `meteorite/fonts/` (latin and latin-ext). Both are under the SIL Open
+Font License 1.1; the licence texts are in the same folder. A browser downloads a file only when a page uses it. The titles use
+Noto Sans Mono too, set by `--theme-title-font`. To use other fonts, change `--theme-font` and `--theme-font-monospace` in
+`meteorite/stylesheets/tokens.css`. The size of running text is `--theme-font-size` (16px), and every other text size follows it.
 
 ## Dark and light
 
-Meteorite is black by default. With a light system setting it becomes a white print, with the same drawing in black lines. To keep it black, delete the `@media (prefers-color-scheme: light)` block at the end of `meteorite/stylesheets/application.css`. Every rule for the white print is in that block.
+Dark is the default: near black, panels a step lighter than the page, light ink and a pale blue accent, with white lines in the
+drawing. Code blocks stay light, since Redmine's syntax colours are made for a light background. With a light system setting
+(`prefers-color-scheme`) Meteorite becomes a white print: warm white paper, black lines, a deeper blue, and the drawing
+inverted. To keep it dark whatever the system says, remove the line `@import url(light.css);` from
+`meteorite/stylesheets/responsive.css`; every light value and rule is in that one file.
+
+## Accessibility
+
+Text and controls meet WCAG AA in both modes. The page check measures every visible text against the colour behind it on every
+page; the tokens were also measured one by one, including the parts the check cannot see (field borders, focus rings, chips
+on a hovered row). The measured ratios are in [docs/accessibility.md](docs/accessibility.md). In short, in dark and then in the white print: body text 17.5:1 and 18.3:1, muted text at least 6.3:1 and 7.1:1, links at least 9.7:1 and 7.5:1,
+text on the primary at least 12.9:1 and 6.1:1, every status and priority chip at least 6.8:1 and 5.3:1, field borders at least 4.5:1 and 4.3:1
+and focus rings at least 13.4:1 and 5.8:1.
 
 ## Compatibility
 
-Redmine 7.0 and newer. Tested on 7.0.2 and the 7.0 line. Older versions are not expected to work.
+Redmine 7.0 and newer. Tested on 7.0.2, from both the `7.0.2` and the `7.0` image tags (on 2026-11-02 the 7.0 line was at 7.0.2). Older versions are not expected to work: Redmine 7 reads a theme from `themes/<name>` and is
+built on the Open Color variables this theme remaps.
+
+Browsers: current Chrome, Edge, Firefox and Safari. The theme uses `:has()` and `color-mix()` (Chrome 111, Firefox 121,
+Safari 16.4 and newer); an older browser shows plainer status chips and keeps the rest.
 
 ## Development
 
@@ -55,23 +197,26 @@ npm run record          # docs/demo, a GIF of a walk through the pages
 ruby bin/demo reset     # wipe the demo
 ```
 
-If the Rubylode to-do plugin is checked out next to this repository (`../redmine-rubylode-todo`, or set `TODO_PLUGIN_PATH`), the demo mounts it and the check, screenshots and recording include its page. Without it they skip that page.
+If copies of the Rubylode plugins listed above sit next to this repository (`../redmine-rubylode-todo` and so on, or in a folder
+named in `RUBYLODE_PLUGINS_DIR`), the demo mounts them and the check, screenshots and recording show their pages. The demo points
+the status plugins at an address where nothing answers, so their pages show the "unavailable" state. Without the plugins the
+demo is plain Redmine, and the check skips their pages.
 
-The check fails on console errors, failed requests, sideways scrolling and text below WCAG AA contrast. `REDMINE_TAG=7.0 ruby bin/demo up` starts the demo on the 7.0 line instead of 7.0.2. Redmine caches theme files until it restarts, so after you change the stylesheet run `ruby bin/demo restart` and reload.
+The stylesheets (except `flourishes.css`), `javascripts/theme.js`, `test/`, `bin/demo` and `docker-compose.yml` are generated from the base all Rubylode
+themes share, so a fix there reaches every theme. If you send a change to one of them, I will carry it over to the base.
 
-Pull Requests are welcome! Run `npm run check` first.
+The check fails on console errors, failed requests, sideways scrolling and text below WCAG AA contrast. `REDMINE_TAG=7.0 ruby bin/demo up`
+runs it against another Redmine version. After you change a stylesheet, run `ruby bin/demo restart` and reload: Redmine caches theme
+files until it restarts.
 
 ## Checks and releases
 
-Every push starts a real Redmine from its Docker image (7.0.2 and the 7.0 line), loads every page of the theme in light and dark at desktop and phone width, and fails on the problems listed above. `.github/workflows/check.yml` does this on GitHub's runners, for pushes and pull requests. `.gitea/workflows/check.yml` is the same for a self-hosted Gitea. It runs on pushes to `main` only, because that runner works on the host with Docker access and should only run merged code.
+Every push starts a real Redmine from its Docker image (7.0.2 and the 7.0 line), loads every page of the theme in light and dark at desktop and phone width, and fails on console errors, failed requests, sideways scrolling and low text contrast. On GitHub that is `.github/workflows/check.yml`, on GitHub's own runners, and it also runs on pull requests. On a self-hosted Gitea it is `.gitea/workflows/check.yml`, which runs only on pushes to `main`, because that runner works on the host with Docker access and must only run code that is already merged.
 
-A tag such as `v1.0.0` runs the check, builds `<name>-<version>.zip` holding the theme folder and attaches it to a release, with the matching section of `CHANGELOG.md` as the notes (`release.yml` in the same folders). The tag needs a section for that version in the changelog.
+A tag such as `v2.0.0` runs the same check, builds `meteorite-<version>.zip` holding the theme folder, and attaches it to a release with the matching section of `CHANGELOG.md` as its notes (`release.yml` in the same folders). The tag needs a section for that version in the changelog. More on both, and on the drift check that compares the generated files with the shared base, in [docs/ci.md](docs/ci.md).
 
 ## License
 
-GPL version 2 or later, the same as Redmine. See [LICENSE](LICENSE).
-
-Copyright (C) 2026  Nick Gorbikoff
+GPL version 2 or later, the same as Redmine. See `LICENSE`. Copyright (C) 2026  Nick Gorbikoff.
 
 No warranty, as the GPL says. Try it on a copy of your tracker before the real one.
-
