@@ -183,6 +183,21 @@
   --theme-neutral-8: #23262e;
   --theme-neutral-9: #0e0f12;
   --theme-neutral-9-rgb: 14, 15, 18;
+
+  /* Chart colours: the Rubylode Stats plugin reads these. Material 600 to 800 hues, each at least 3:1 against the page and the panels. */
+  --theme-chart-1: #1E88E5;
+  --theme-chart-2: #43A047;
+  --theme-chart-3: #E06500;
+  --theme-chart-4: #8E24AA;
+  --theme-chart-5: #0097A7;
+  --theme-chart-6: #E53935;
+  --theme-chart-7: #5E35B1;
+  --theme-chart-8: #5E9A30;
+  --theme-chart-9: #F4511E;
+  --theme-chart-10: #546E7A;
+  --theme-chart-open: #1E88E5;
+  --theme-chart-closed: #43A047;
+  --theme-chart-neutral: #78909C;
 }
 
 /* Meteorite's tokens, dark values: its main look. Near black, a blue-white accent, hairlines of light ink. This file is the
@@ -320,6 +335,21 @@
   --theme-neutral-8: #dde3ee;
   --theme-neutral-9: #f2f5fa;
   --theme-neutral-9-rgb: 242, 245, 250;
+
+  /* Chart colours: the Rubylode Stats plugin reads these. Material 300 to 400 hues, each at least 3:1 against the page and the panels. */
+  --theme-chart-1: #64B5F6;
+  --theme-chart-2: #81C784;
+  --theme-chart-3: #FFB74D;
+  --theme-chart-4: #BA68C8;
+  --theme-chart-5: #4DD0E1;
+  --theme-chart-6: #E57373;
+  --theme-chart-7: #9575CD;
+  --theme-chart-8: #AED581;
+  --theme-chart-9: #FF8A65;
+  --theme-chart-10: #90A4AE;
+  --theme-chart-open: #64B5F6;
+  --theme-chart-closed: #81C784;
+  --theme-chart-neutral: #78909C;
 }
 
 :root {
