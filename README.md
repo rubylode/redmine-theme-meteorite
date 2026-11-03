@@ -1,5 +1,7 @@
 # Rubylode Meteorite for Redmine
 
+<p><img src="docs/thumbnail.png" alt="Rubylode Meteorite theme" width="160"></p>
+
 A dark theme for Redmine 7 and up, drawn like an instrument panel: near black, hairlines, rings and ticks behind the page, square corners, a thin frame and wide-spaced capitals in the titles.
 
 It is plain CSS plus one small script (`javascripts/theme.js`, about 150 lines), with no plugin, no build step and no change to
