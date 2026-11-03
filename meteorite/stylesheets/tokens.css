@@ -1,0 +1,367 @@
+/* Rubylode Meteorite, a theme for Redmine 7
+ * Copyright (C) 2026  Nick Gorbikoff
+ * GNU General Public License, version 2 or later. See the LICENSE file.
+ * Generated from the shared base of the Rubylode themes: a change made here is overwritten by the next build. */
+
+/* Meteorite's tokens, light values: the white print, black lines on warm white paper. The main look is dark and its values are
+ * in dark.css (the build lays them over these as the default; these come back with a light system setting). */
+:root {
+  /* Surfaces: paper, and panels told apart by hairlines. */
+  --theme-page: #f6f6f1;
+  --theme-surface: #fafaf6;
+  --theme-surface-sunken: #f1f1ec;      /* attribute panels, journal headers, table stripes */
+  --theme-surface-hover: #e8f0fb;       /* hovered rows and menu items: a pale blue */
+  --theme-line: #b4b4aa;                /* panel borders and row lines */
+  --theme-line-soft: #dcdcd3;           /* column lines, quiet chips */
+  --theme-line-strong: #75756b;         /* field borders: 3:1 against the page and the panels */
+
+  /* Text. */
+  --theme-ink: #0e0f12;
+  --theme-ink-soft: #23262e;
+  --theme-ink-muted: #4b4f5b;
+  --theme-ink-on-colour: #ffffff;
+  --theme-ink-on-light-colour: #0e0f12;
+
+  /* The accent: a blue ramp, pale to deep. */
+  --theme-accent-0: #e8f0fb;
+  --theme-accent-1: #d3e2f7;
+  --theme-accent-2: #b5cdf0;
+  --theme-accent-3: #7fa6e0;
+  --theme-accent-4: #4a82d4;
+  --theme-accent-5: #2a6ec6;
+  --theme-accent-6: #1b5fbf;
+  --theme-accent-7: #154a94;
+  --theme-accent-8: #103a75;
+  --theme-accent-9: #0c2d5b;
+  --theme-accent-1-rgb: 211, 226, 247;
+  --theme-accent-pale: #eef3fb;
+
+  /* A pale blue for the text selection, and a pale amber for search highlights. */
+  --theme-secondary: #9db9e6;
+  --theme-secondary-pale: #e8eef9;
+  --theme-tertiary: #e8c36a;
+  --theme-tertiary-pale: #f7efd6;
+
+  --theme-link: var(--theme-accent-7);
+  --theme-link-hover: var(--theme-accent-9);
+  --theme-primary: var(--theme-accent-6);
+  --theme-primary-hover: var(--theme-accent-7);
+  --theme-ink-on-primary: #ffffff;
+  --theme-primary-background: #1b5fbf;
+  --theme-primary-background-hover: #154a94;
+  --theme-redmine-accent: var(--theme-accent-6);
+  --theme-redmine-accent-rgb: 27, 95, 191;
+  --theme-selected-tab-border-image: none;
+
+  /* The header: paper with a hairline under it. */
+  --theme-header-background: #f6f6f1;
+  --theme-header-background-solid: #f6f6f1;
+  --theme-header-ink: var(--theme-ink);
+  --theme-header-link: #3a3e49;
+  --theme-header-hover-background: rgba(14, 15, 18, 0.07);
+  --theme-header-line: #b4b4aa;
+  --theme-header-field-background: #ffffff;
+  --theme-header-field-border: #75756b;
+  --theme-mark-image: url("../images/meteorite-mark.svg");
+
+  /* The project sidebar (the sidebar layout): paper, a hairline edge, a ring before the project name. */
+  --theme-sidebar-width: 232px;
+  --theme-sidebar-background: #f6f6f1;
+  --theme-sidebar-line: #b4b4aa;
+  --theme-sidebar-tile: radial-gradient(circle, #154a94 0 2.5px, transparent 3px), repeating-radial-gradient(circle, transparent 0 5px, #154a94 5px 6px);
+  --theme-sidebar-hover-background: rgba(14, 15, 18, 0.07);
+  --theme-sidebar-selected-background: linear-gradient(90deg, rgba(27, 95, 191, 0.16), transparent);
+  --theme-sidebar-selected-ink: #0e0f12;
+  --theme-sidebar-selected-edge: #1b5fbf;
+
+  /* Buttons that are not the primary: outlined. Delete buttons: a tint of red. */
+  --theme-button-background: #fafaf6;
+  --theme-button-border: #75756b;
+  --theme-button-ink: #23262e;
+  --theme-danger-soft: #fbe9ea;
+  --theme-danger-soft-border: #e3a6ab;
+  --theme-danger-ink: #a4242d;
+
+  /* Focus: a blue outline with a pale halo. */
+  --theme-focus: #1b5fbf;
+  --theme-focus-halo: rgba(27, 95, 191, 0.25);
+
+  /* Meaning. Status ids in a default Redmine: 1 New, 2 In Progress, 3 Resolved, 4 Feedback, 5 Closed, 6 Rejected. */
+  --theme-status-new: #6b7183;
+  --theme-status-in-progress: #1b5fbf;
+  --theme-status-resolved: #2f8a4e;
+  --theme-status-feedback: #b07a12;
+  --theme-status-closed: #4b4f5b;
+  --theme-status-rejected: #b42318;
+  --theme-success: #2f8a4e;
+  --theme-warning: #c98a12;
+  --theme-danger: #c8414b;
+  --theme-danger-strong: #a4242d;
+  --theme-success-ink: #1d5a33;
+  --theme-success-soft: #e3f2e8;
+  --theme-caution-ink: #7a4f05;
+  --theme-caution-soft: #fbf2e1;
+  --theme-chip-ink-mix: #000000;
+  --theme-chip-ink-share: 60%;
+  --theme-chip-fill-share: 14%;
+
+  /* Messages, avatars, activity markers, search highlights, diffs and the Gantt chart. */
+  --theme-flash-success-background: #e7f4ec;
+  --theme-flash-success-border: #a9d3b7;
+  --theme-flash-success-ink: #1d5a33;
+  --theme-flash-warning-background: #fbf2e1;
+  --theme-flash-warning-border: #eccf95;
+  --theme-flash-warning-ink: #6f4d0b;
+  --theme-avatar-color-0: #b02a2a;
+  --theme-avatar-color-1: #b4540a;
+  --theme-avatar-color-7: #c2255c;
+  --theme-activity-edit-ink: #2d4a80;
+  --theme-activity-wiki-ink: #7a3f22;
+  --theme-search-highlight-ink: var(--theme-ink);
+  --theme-diff-removed: #fde7e9;
+  --theme-diff-added: #e1f3e6;
+  --theme-gantt-late: #e7a26b;
+  --theme-gantt-late-label: #8a4a12;
+
+  /* Meteorite's own, read by flourishes.css and extra.js: the drawing behind the page and how strong it is, the grid, the glow at
+     the top left, the frame, the ring round a status, and the ring round the initials. */
+  --theme-instrument-image: url("../images/instrument.svg");
+  --theme-instrument-filter: invert(1);
+  --theme-instrument-opacity: 0.4;
+  --theme-grid-line: rgba(16, 17, 20, 0.12);
+  --theme-glow: rgba(255, 255, 255, 0.8);
+  --theme-frame-line: rgba(16, 17, 20, 0.4);
+  --theme-status-ring: rgba(16, 17, 20, 0.6);
+  --theme-row-line: rgba(16, 17, 20, 0.18);
+
+  /* Shape and depth: square corners everywhere (dots and round avatars keep their circle), and no shadow on cards. */
+  --theme-radius-highlight: 0;
+  --theme-radius-inline: 0;
+  --theme-radius-small: 0;
+  --theme-radius: 0;
+  --theme-radius-panel: 0;
+  --theme-radius-pill: 0;
+  --theme-radius-round: 50%;
+  --theme-border-width: 1px;
+  --theme-border-style: solid;
+  --theme-shadow-card: none;
+  --theme-shadow-popup: 0 12px 32px rgba(0, 0, 0, 0.2);
+  --theme-shadow-primary-button: none;
+  --theme-shadow-header-scrolled: 0 1px 0 rgba(0, 0, 0, 0.12);
+  --theme-space-small: 8px;
+  --theme-space: 16px;
+  --theme-space-large: 24px;
+  --theme-density: 1;
+  --theme-top-bar-height: 44px;
+  --theme-project-bar-height: 48px;
+
+  /* Type: the bundled Noto Sans for text, Noto Sans Mono for code and, with wide letter-spacing and capitals, for titles. */
+  --theme-font-size: 16px;
+  --theme-font: "Noto Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  --theme-font-monospace: "Noto Sans Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  --theme-title-font: var(--theme-font-monospace);
+  --theme-title-weight: 400;
+  --theme-code-background: #ebebe5;
+  --theme-code-ink: #0e0f12;
+  --theme-syntax-keyword: #006b00;
+
+  /* Icons drawn in a stylesheet carry their colour inside the image. */
+  --theme-select-arrow-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%234b4f5b' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  --theme-search-field-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%234b4f5b' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m20 20-3.5-3.5'/%3E%3C/svg%3E");
+  --theme-project-jump-arrow-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%234b4f5b' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+
+  /* Redmine's grey ramp (--oc-gray-0 to -9) and its white. */
+  --theme-redmine-white: #fafaf6;
+  --theme-neutral-0: #f1f1ec;
+  --theme-neutral-1: #ebebe5;
+  --theme-neutral-2: #e3e3dc;
+  --theme-neutral-3: #cfcfc6;
+  --theme-neutral-4: #b4b4aa;
+  --theme-neutral-5: #565a66;
+  --theme-neutral-6: #4b4f5b;
+  --theme-neutral-7: #3a3e49;
+  --theme-neutral-8: #23262e;
+  --theme-neutral-9: #0e0f12;
+  --theme-neutral-9-rgb: 14, 15, 18;
+}
+
+/* Meteorite's tokens, dark values: its main look. Near black, a blue-white accent, hairlines of light ink. This file is the
+ * default; tokens.css holds the white print that a light system setting brings back. A name not set here keeps its tokens.css value. */
+:root {
+  --theme-page: #06070a;
+  --theme-surface: #090b0f;
+  --theme-surface-sunken: #0e1116;
+  --theme-surface-hover: #0f2230;
+  --theme-line: #3b434f;
+  --theme-line-soft: #232a35;
+  --theme-line-strong: #6f7a8d;
+
+  --theme-ink: #eef2f8;
+  --theme-ink-soft: #dde3ee;
+  --theme-ink-muted: #98a2b5;
+  --theme-ink-on-light-colour: #06121c;
+
+  --theme-accent-0: #0f2230;
+  --theme-accent-1: #123049;
+  --theme-accent-2: #1b4a6e;
+  --theme-accent-3: #4a9bd1;
+  --theme-accent-4: #7cc4f2;
+  --theme-accent-5: #a8dcff;
+  --theme-accent-6: #2b6cb0;
+  --theme-accent-7: #8fd0f7;
+  --theme-accent-8: #c7e8ff;
+  --theme-accent-9: #c7e8ff;
+  --theme-accent-1-rgb: 18, 48, 73;
+  --theme-accent-pale: #0f2230;
+
+  --theme-secondary: #2a5f8f;
+  --theme-secondary-pale: #0f2230;
+  --theme-tertiary: #e0b050;
+  --theme-tertiary-pale: #3a2f12;
+
+  --theme-link: #8fd0f7;
+  --theme-link-hover: #c7e8ff;
+  --theme-primary: #a8dcff;
+  --theme-primary-hover: #c7e8ff;
+  --theme-ink-on-primary: #06121c;
+  --theme-primary-background: #a8dcff;
+  --theme-primary-background-hover: #c7e8ff;
+  --theme-redmine-accent: #8fd0f7;
+  --theme-redmine-accent-rgb: 143, 208, 247;
+
+  --theme-header-background: #06070a;
+  --theme-header-background-solid: #06070a;
+  --theme-header-link: #aab3c4;
+  --theme-header-hover-background: rgba(255, 255, 255, 0.07);
+  --theme-header-line: #2e3641;
+  --theme-header-field-background: rgba(255, 255, 255, 0.05);
+  --theme-header-field-border: #6f7a8d;
+  --theme-mark-image: url("../images/meteorite-mark-dark.svg");
+
+  --theme-sidebar-background: #08090d;
+  --theme-sidebar-line: #3b434f;
+  --theme-sidebar-tile: radial-gradient(circle, #eef2f8 0 2.5px, transparent 3px), repeating-radial-gradient(circle, transparent 0 5px, #a8dcff 5px 6px);
+  --theme-sidebar-hover-background: rgba(255, 255, 255, 0.07);
+  --theme-sidebar-selected-background: linear-gradient(90deg, rgba(168, 220, 255, 0.18), transparent);
+  --theme-sidebar-selected-ink: #ffffff;
+  --theme-sidebar-selected-edge: #a8dcff;
+
+  --theme-button-background: #0e1116;
+  --theme-button-border: #6f7a8d;
+  --theme-button-ink: #dde3ee;
+  --theme-danger-soft: #2a1519;
+  --theme-danger-soft-border: #6b2a35;
+  --theme-danger-ink: #ffa8b0;
+
+  --theme-focus: #a8dcff;
+  --theme-focus-halo: rgba(168, 220, 255, 0.3);
+
+  --theme-status-new: #98a2b5;
+  --theme-status-in-progress: #6fb6ef;
+  --theme-status-resolved: #6fcf97;
+  --theme-status-feedback: #e0b050;
+  --theme-status-closed: #7d889c;
+  --theme-status-rejected: #f08a94;
+  --theme-success: #6fcf97;
+  --theme-warning: #e0a040;
+  --theme-danger: #f07178;
+  --theme-danger-strong: #b3123f;
+  --theme-success-ink: #8fd3a6;
+  --theme-success-soft: #10261c;
+  --theme-caution-ink: #f0c67a;
+  --theme-caution-soft: #2a2110;
+  --theme-chip-ink-mix: #ffffff;
+  --theme-chip-ink-share: 55%;
+  --theme-chip-fill-share: 18%;
+
+  --theme-flash-success-background: #0f2a20;
+  --theme-flash-success-border: #2f6048;
+  --theme-flash-success-ink: #a6dcb9;
+  --theme-flash-warning-background: #2a2110;
+  --theme-flash-warning-border: #6b5226;
+  --theme-flash-warning-ink: #f0c67a;
+  --theme-activity-edit-ink: #a8c4f0;
+  --theme-activity-wiki-ink: #f2b89c;
+  --theme-search-highlight-ink: #f5deb0;
+  --theme-diff-removed: #3b1a20;
+  --theme-diff-added: #12301f;
+  --theme-gantt-late: #c98a3a;
+  --theme-gantt-late-label: #f0b27a;
+
+  --theme-instrument-filter: none;
+  --theme-instrument-opacity: 0.3;
+  --theme-grid-line: rgba(238, 242, 248, 0.1);
+  --theme-glow: rgba(190, 220, 255, 0.18);
+  --theme-frame-line: rgba(238, 242, 248, 0.3);
+  --theme-status-ring: rgba(238, 242, 248, 0.55);
+  --theme-row-line: rgba(238, 242, 248, 0.14);
+
+  --theme-shadow-popup: 0 12px 32px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(238, 242, 248, 0.14);
+  --theme-shadow-header-scrolled: 0 1px 0 rgba(238, 242, 248, 0.12);
+
+  /* Code blocks stay light: Redmine's syntax colours are made for a light background. */
+  --theme-code-background: #eef2f8;
+  --theme-code-ink: #0e1116;
+
+  --theme-select-arrow-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23aab3c4' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  --theme-search-field-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23aab3c4' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m20 20-3.5-3.5'/%3E%3C/svg%3E");
+  --theme-project-jump-arrow-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23aab3c4' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+
+  /* Redmine's own palette, dark. --oc-white is the panel colour, so the base sets white text on colour by hand. */
+  --theme-redmine-white: var(--theme-surface);
+  --theme-neutral-0: #0e1116;
+  --theme-neutral-1: #12161c;
+  --theme-neutral-2: #181d25;
+  --theme-neutral-3: #232a35;
+  --theme-neutral-4: #323b49;
+  --theme-neutral-5: #98a2b5;
+  --theme-neutral-6: #aab3c4;
+  --theme-neutral-7: #c4ccda;
+  --theme-neutral-8: #dde3ee;
+  --theme-neutral-9: #f2f5fa;
+  --theme-neutral-9-rgb: 242, 245, 250;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+/* Redmine's palette, pointed at the tokens. Redmine 7 colours itself with the Open Color variables (--oc-*) and a few
+ * --color-* names, so remapping them recolours the parts of Redmine the theme does not style by hand. */
+:root {
+  --fonts-main: var(--theme-font);
+
+  --oc-white: var(--theme-redmine-white);
+  --oc-gray-0: var(--theme-neutral-0);
+  --oc-gray-1: var(--theme-neutral-1);
+  --oc-gray-2: var(--theme-neutral-2);
+  --oc-gray-3: var(--theme-neutral-3);
+  --oc-gray-4: var(--theme-neutral-4);
+  --oc-gray-5: var(--theme-neutral-5);
+  --oc-gray-6: var(--theme-neutral-6);
+  --oc-gray-7: var(--theme-neutral-7);
+  --oc-gray-8: var(--theme-neutral-8);
+  --oc-gray-9: var(--theme-neutral-9);
+  --oc-gray-9-rgb: var(--theme-neutral-9-rgb);
+
+  --oc-blue-0: var(--theme-accent-0);
+  --oc-blue-1: var(--theme-accent-1);
+  --oc-blue-2: var(--theme-accent-2);
+  --oc-blue-3: var(--theme-accent-3);
+  --oc-blue-4: var(--theme-accent-4);
+  --oc-blue-5: var(--theme-accent-5);
+  --oc-blue-6: var(--theme-accent-6);
+  --oc-blue-7: var(--theme-redmine-accent);
+  --oc-blue-8: var(--theme-accent-7);
+  --oc-blue-9: var(--theme-link); /* Redmine colours its links with step 9 */
+  --oc-blue-1-rgb: var(--theme-accent-1-rgb);
+  --oc-blue-7-rgb: var(--theme-redmine-accent-rgb);
+  --oc-indigo-0: var(--theme-accent-0);
+  --oc-indigo-1: var(--theme-accent-1);
+  --oc-indigo-2: var(--theme-accent-2);
+  --oc-indigo-5: var(--theme-accent-5);
+  --oc-indigo-9: var(--theme-accent-9);
+
+  --color-top-menu-background: var(--theme-header-background-solid);
+  --color-header-background: var(--theme-header-background-solid);
+}

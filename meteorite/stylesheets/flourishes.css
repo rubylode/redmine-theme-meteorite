@@ -1,0 +1,200 @@
+/* Rubylode Meteorite, a theme for Redmine 7
+ * Copyright (C) 2026  Nick Gorbikoff
+ * GNU General Public License, version 2 or later. See the LICENSE file.
+ * Generated from the shared base of the Rubylode themes: a change made here is overwritten by the next build. */
+
+/* Meteorite's own touches, the ones tokens cannot express: an instrument drawn behind the page, a grid and a thin frame with a
+ * dot at each corner, wide-spaced capitals in the titles, dashed row lines, and an issue list that marks status with an orbit
+ * and priority with a row of five bars. The script's additions (extra.js) are at the end. */
+
+/* The page: a faint grid and a glow at the top left. The drawing and the frame sit on top of it, behind and in front of the content. */
+body {
+  background-color: var(--theme-page);
+  background-image:
+    radial-gradient(ellipse at 18% -8%, var(--theme-glow), transparent 45%),
+    linear-gradient(var(--theme-grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--theme-grid-line) 1px, transparent 1px);
+  background-size: auto, 56px 56px, 56px 56px;
+  background-attachment: fixed;
+}
+#wrapper { position: relative; z-index: 1; }
+#wrapper, #main { background: transparent; }
+body::before {
+  content: "";
+  position: fixed;
+  inset: -14% -22% -14% 34%;
+  z-index: 0;
+  pointer-events: none;
+  background: var(--theme-instrument-image) center / contain no-repeat;
+  opacity: var(--theme-instrument-opacity);
+  filter: var(--theme-instrument-filter);
+}
+body::after {
+  content: "";
+  position: fixed;
+  inset: 14px;
+  z-index: 50;
+  pointer-events: none;
+  border: 1px solid var(--theme-frame-line);
+  background:
+    radial-gradient(circle, var(--theme-ink) 0 4px, transparent 5px) left -5px top -5px / 10px 10px no-repeat,
+    radial-gradient(circle, var(--theme-ink) 0 4px, transparent 5px) right -5px top -5px / 10px 10px no-repeat,
+    radial-gradient(circle, var(--theme-ink) 0 4px, transparent 5px) left -5px bottom -5px / 10px 10px no-repeat,
+    radial-gradient(circle, var(--theme-ink) 0 4px, transparent 5px) right -5px bottom -5px / 10px 10px no-repeat;
+}
+@media screen and (min-width: 1100px) {
+  body:not(.controller-account) #wrapper {
+    background: linear-gradient(
+      to right,
+      var(--theme-sidebar-background) calc(var(--theme-sidebar-width) - 1px),
+      var(--theme-sidebar-line) calc(var(--theme-sidebar-width) - 1px) var(--theme-sidebar-width),
+      transparent var(--theme-sidebar-width)
+    );
+  }
+  /* The project name in the sidebar: wide-spaced capitals. */
+  body:not(.controller-account) #header h1 {
+    font-family: var(--theme-title-font);
+    font-weight: var(--theme-title-weight);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+  body:not(.controller-account) :is(.top-menu__links a, #main-menu li a) { letter-spacing: 0.04em; }
+}
+
+/* Titles: wide-spaced capitals in the title font, light on the page. */
+#content > h2 { font-weight: var(--theme-title-weight); letter-spacing: 0.2em; text-transform: uppercase; }
+#content h3, .wiki h1, .wiki h2, .wiki h3, .wiki h4 { font-weight: var(--theme-title-weight); letter-spacing: 0.1em; text-transform: uppercase; }
+
+@media screen and (max-width: 600px) {
+  #content > h2 { letter-spacing: 0.1em; }
+}
+
+/* Lists: a hairline under the headings, dashed lines between rows and columns. */
+table.list { border-block-end: 1px solid var(--theme-line); }
+table.list th { background: transparent; letter-spacing: 0.12em; border-block-end: 1px solid var(--theme-line); }
+table.list td { border-block-start: 1px dashed var(--theme-row-line); border-block-end: 0; }
+table.list > thead > tr > th + th, table.list > tbody > tr > td + td { border-inline-start: 1px dashed var(--theme-row-line); }
+table.list > tbody > tr.group > td { border-inline-start: 0; border-block-start: 0; }
+
+/* The issue card: see-through, with a thin edge in the accent. */
+div.issue { background: color-mix(in srgb, var(--theme-surface) 72%, transparent); }
+
+/* Fields and buttons: outlined, buttons in small wide-spaced capitals. */
+input[type=text], input[type=password], input[type=email], input[type=number], input[type=search], input[type=date], input[type=url],
+input[type=tel], input:not([type]), select, textarea { background-color: var(--theme-header-field-background); }
+input[type=submit], input[type=button], input[type=reset], button, a.button { letter-spacing: 0.1em; text-transform: uppercase; }
+#login-form { background: var(--theme-surface); box-shadow: none; }
+
+/* Avatars: a dark disc with a ring. */
+[class*="avatar-color-"] { background-color: #2a3140; border: 1px solid var(--theme-line-strong); color: #ffffff; }
+
+/* Status as an orbit and priority as five bars, as plain cells where the shared base draws chips. */
+table.list.issues > tbody > tr.issue > td.status,
+table.list.issues > tbody > tr.issue:is(.priority-1, .priority-2, .priority-3, .priority-4, .priority-5) > td.priority {
+  inline-size: auto;
+  background-image: none;
+  background-clip: border-box;
+  color: var(--theme-ink);
+  font-size: inherit;
+  font-weight: 400;
+}
+table.list.issues > tbody > tr.issue > td.status::after,
+table.list.issues > tbody > tr.issue > td.priority::after { display: none; }
+
+table.list.issues > tbody > tr.issue > td.status::before {
+  box-sizing: border-box;
+  inline-size: 16px;
+  block-size: 16px;
+  margin: 0 9px 0 0;
+  border: 1px solid var(--theme-status-ring);
+  border-radius: var(--theme-radius-round);
+  background: radial-gradient(circle, var(--theme-ink) 0 2.5px, transparent 3px);
+  vertical-align: -3px;
+}
+table.list.issues > tbody > tr.issue.status-1 > td.status::before { background: transparent; }
+table.list.issues > tbody > tr.issue.status-2 > td.status::before {
+  border-color: var(--theme-accent-5);
+  background: radial-gradient(circle, var(--theme-accent-5) 0 2.5px, transparent 3px);
+  box-shadow: 0 0 10px var(--theme-accent-5);
+}
+
+/* Priority: five bars, lit up to the level. The issue page uses the same meter beside the priority name. */
+table.list.issues > tbody > tr.issue[class*="priority-"] > td.priority::before,
+div.issue[class*="priority-"] .attributes .priority.attribute .value:not(:empty)::before {
+  inline-size: 23px;
+  block-size: 10px;
+  margin: 0 8px 0 0;
+  vertical-align: -1px;
+  background:
+    linear-gradient(var(--meter-1, var(--meter-off)), var(--meter-1, var(--meter-off))) 0 0 / 3px 10px no-repeat,
+    linear-gradient(var(--meter-2, var(--meter-off)), var(--meter-2, var(--meter-off))) 5px 0 / 3px 10px no-repeat,
+    linear-gradient(var(--meter-3, var(--meter-off)), var(--meter-3, var(--meter-off))) 10px 0 / 3px 10px no-repeat,
+    linear-gradient(var(--meter-4, var(--meter-off)), var(--meter-4, var(--meter-off))) 15px 0 / 3px 10px no-repeat,
+    linear-gradient(var(--meter-5, var(--meter-off)), var(--meter-5, var(--meter-off))) 20px 0 / 3px 10px no-repeat;
+}
+
+/* Trackers: a small square before the name. */
+tr.issue { --tracker-colour: var(--theme-accent-5); }
+tr.issue.tracker-1 { --tracker-colour: var(--theme-ink); }
+table.list td.tracker::before {
+  content: "";
+  display: inline-block;
+  inline-size: 8px;
+  block-size: 8px;
+  margin-inline-end: 8px;
+  border: 1px solid var(--tracker-colour);
+  vertical-align: 0;
+}
+
+/* Status groups: the group name in a box, wide-spaced capitals. */
+table.list > tbody > tr.group > td { background: transparent; }
+table.list tr.group span.name {
+  display: inline-block;
+  padding: 2px 10px;
+  border: 1px solid var(--theme-line);
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* The script's additions (extra.js). Each one is a nicety: without the script the list shows plain names. */
+
+/* A ring with the initials in place of the assignee's name, which stays for screen readers and in the tooltip. */
+.assignee-initials {
+  display: inline-grid;
+  place-items: center;
+  inline-size: 24px;
+  block-size: 24px;
+  margin-inline-end: 6px;
+  border: 1px solid var(--theme-line-strong);
+  border-radius: var(--theme-radius-round);
+  color: var(--theme-ink);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  vertical-align: middle;
+}
+table.list td.assigned_to { white-space: nowrap; }
+table.list td.assigned_to a.assignee-name {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* The tabs above the issue list: Issues, Gantt, Calendar, Activity. */
+nav.view-tabs { display: flex; gap: 4px; margin-block: 0 14px; border-block-end: 1px solid var(--theme-line); }
+nav.view-tabs a, nav.view-tabs a:visited {
+  margin-block-end: -1px;
+  padding: 8px 14px;
+  border-block-end: 2px solid transparent;
+  color: var(--theme-ink-muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+nav.view-tabs a:hover { color: var(--theme-ink); text-decoration: none; }
+nav.view-tabs a.selected, nav.view-tabs a.selected:hover { border-color: var(--theme-accent-5); color: var(--theme-ink); font-weight: 600; }
+
+/* White text from Redmine on the pale primary of the dark print would not read, so these take the ink made for it. */
+span.badge.badge-count.badge-count, .pagination ul.pages li.current :is(span, a):is(span, a) { color: var(--theme-ink-on-primary); }
